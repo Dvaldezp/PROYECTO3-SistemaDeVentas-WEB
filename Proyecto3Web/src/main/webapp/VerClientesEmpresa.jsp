@@ -1,3 +1,6 @@
+<%@ page import="src.main.java.Cliente_Empresa" %>
+<%@ page import="java.util.List" %>
+<%@ page import="src.main.java.ProductoDAO" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -32,46 +35,34 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-    <th scope="row">1</th>
-      <td>Edy </td>
-      <td>S.A </td>
-      <td> 7 Ave. 8-78</td>
-      <td>Daniel</td>
-      <td>10</td>
-    </tr>
-    <tr>
-    <th scope="row">2</th>
-      <td>Edy </td>
-      <td>S.A </td>
-      <td> 7 Ave. 8-78</td>
-      <td>Daniel</td>
-      <td>10</td>
-    </tr>
-    <tr>
-    <th scope="row">3</th>
-      <td>Edy </td>
-      <td>S.A </td>
-      <td> 7 Ave. 8-78</td>
-      <td>Daniel</td>
-      <td>10</td>
-    </tr>
-    <tr>
-    <th scope="row">4</th>
-      <td>Edy </td>
-      <td>S.A </td>
-      <td> 7 Ave. 8-78</td>
-      <td>Daniel</td>
-      <td>10</td>
-    </tr>
-    <tr>
-    <th scope="row">5</th>
-      <td>Edy </td>
-      <td>S.A </td>
-      <td> 7 Ave. 8-78</td>
-      <td>Daniel</td>
-      <td>10</td>
-    </tr>
+  <%
+      ProductoDAO productoDAO = new ProductoDAO();
+
+      List<Cliente_Empresa> clienteempre = productoDAO.getDBclienteempresa();
+
+      int i=0;
+      for(Cliente_Empresa cliente_empresa: clienteempre){
+
+  %>
+  <tr>
+      <th scope="row"><%=cliente_empresa.getIdCliente()%></th>
+      <td><%=cliente_empresa.getNombreCliente()%></td>
+      <td> <%=cliente_empresa.getApellidoCliente()%></td>
+      <td><%=cliente_empresa.getDireccion()%></td>
+      <td><%=cliente_empresa.getContacto()%></td>
+      <td><%=cliente_empresa.getDescuentoEmpresa()%></td>
+  </tr>
+  <%
+      }
+  %>
+
+
+
+
+
+
+
+
      </tbody>
 </table>
 </div>

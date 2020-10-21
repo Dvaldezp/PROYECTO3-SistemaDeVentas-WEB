@@ -30,11 +30,11 @@
 					aria-expanded="false" data-offset="20,20">Cliente</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 						<a class="dropdown-item" href="#">Ver todos los clientes</a> <a
-						class="dropdown-item" href="#">Ver todos los clientes individual</a> <a 
-						class="dropdown-item" href="#">Ver todos los clientes empresa</a> <a 
-						class="dropdown-item" href="#">Modificar Cliente Empresa</a> <a
-						class="dropdown-item" href="#">Modificar Cliente Individual</a> <a
-						class="dropdown-item" href="#">Eliminar Cliente Individual</a> <a
+						class="dropdown-item" href="VerClientesIndividual.jsp">Ver todos los clientes individual</a> <a
+						class="dropdown-item" href="VerClientesEmpresa.jsp">Ver todos los clientes empresa</a> <a
+						class="dropdown-item" href="ModificarClienteEmpresa.jsp">Modificar Cliente Empresa</a> <a
+						class="dropdown-item" href="ModificarClienteIndividual.jsp">Modificar Cliente Individual</a> <a
+						class="dropdown-item" href="EliminarClienteIndividual.jsp">Eliminar Cliente Individual</a> <a
 						class="dropdown-item" href="#">Eliminar Cliente Empresa</a> <a
 						class="dropdown-item" href="#">Buscar Cliente Individual</a> <a
 						class="dropdown-item" href="#">Buscar Cliente Empresa</a> <a

@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="src.main.java.ProductoDAO" %>
+<%@ page import="src.main.java.Cliente_Individual" %>
+
+<!DOCTYPE html>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -30,36 +35,31 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-    
-      <th scope="row">1</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">2</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">3</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">4</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    </tbody>
+
+  <%
+      ProductoDAO productoDAO = new ProductoDAO();
+
+      List<Cliente_Individual> individuals = productoDAO.getDBclienteindividual();
+
+      int i=0;
+      for(Cliente_Individual clienteIndividual: individuals){
+
+  %>
+  <tr>
+      <th scope="row"><%=clienteIndividual.getIdCliente()%><</th>
+      <td><%=clienteIndividual.getNombreCliente()%></td>
+      <td> <%=clienteIndividual.getApellidoCliente()%></td>
+      <td><%=clienteIndividual.getDireccion()%></td>
+      <td><%=clienteIndividual.getDpi()%></td>
+  </tr>
+  <%
+      }
+  %>
+
+
+
+
+  </tbody>
 </table>
 </div>
 
