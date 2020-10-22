@@ -48,8 +48,8 @@
 						id="dropdownMenuOffset" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false" data-offset="10,20">Factura</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-						<a class="dropdown-item" href="#">Realizar Factura</a> <a
-						   class="dropdown-item" href="#">Ver todas las facturas</a> <a
+						<a class="dropdown-item" href="RealizarFactura.jsp">Realizar Factura</a> <a
+						   class="dropdown-item" href="VerTodasLasFacturas.jsp">Ver todas las facturas</a> <a
 						   class="dropdown-item" href="#">Buscar Factura</a>
 					</div>
 				</div>

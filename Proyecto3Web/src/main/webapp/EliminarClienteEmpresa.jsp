@@ -1,3 +1,6 @@
+<%@ page import="src.main.java.ManejoDAO" %>
+<%@ page import="src.main.java.Cliente_Empresa" %>
+<%@ page import="java.util.List" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -20,14 +23,32 @@
 	</div>
 	<div class="container well/">
 
-		<form action="EliminarClienteEmpresa.jsp" method="post"
+		<form action="EliminarClienteEmpresa.jsp" method="get"
 			class="form-control" style="width: 300px; height: 200px">
 			<div class="form-group">
-				<label for="C">Ingrese el codigo del cliente</label> <input
-					type="text" class="form-control" id="Codigo" name="Codigocliente">
+				<label for="codigo">Ingrese el codigo del cliente</label> <input
+					type="text" class="form-control" id="codigo" name="codigo">
 				<button type="submit" class="btn btn-primary">Buscar
 					Cliente</button>
 			</div>
+
+			<button action="<%
+                            try{
+                                ManejoDAO dao=new ManejoDAO();
+
+                            dao.getEliminarRegistroempresa(Integer.parseInt(request.getParameter("codigo")));
+
+                            }catch(Exception e){
+                                e.printStackTrace();
+                             }
+
+
+                        %>   " type="submit" class="btn btn-primary">Eliminar</button>
+
+
+
+
+
 		</form>
 	</div>
 
@@ -46,48 +67,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+			<%
+				ManejoDAO manejoDAO = new ManejoDAO();
 
-					<th scope="row">1</th>
-					<td>Edy</td>
-					<td>3 Ave. 8-78</td>
-					<td>Daniel</td>
-					<td>50</td>
-				</tr>
-				<tr>
-				<tr>
+				List<Cliente_Empresa> clienteempre = manejoDAO.getDBclienteempresa();
 
-					<th scope="row">2</th>
-					<td>Edy</td>
-					<td>3 Ave. 8-78</td>
-					<td>Daniel</td>
-					<td>50</td>
-				</tr>
-				<tr>
-				<tr>
+				int i=0;
+				for(Cliente_Empresa cliente_empresa: clienteempre){
 
-					<th scope="row">3</th>
-					<td>Edy</td>
-					<td>3 Ave. 8-78</td>
-					<td>Daniel</td>
-					<td>50</td>
-				</tr>
-				<tr>
-				<tr>
+			%>
+			<tr>
+				<th scope="row"><%=cliente_empresa.getIdCliente()%></th>
+				<td><%=cliente_empresa.getNombreCliente()%></td>
+				<td> <%=cliente_empresa.getApellidoCliente()%></td>
+				<td><%=cliente_empresa.getDireccion()%></td>
+				<td><%=cliente_empresa.getContacto()%></td>
+				<td><%=cliente_empresa.getDescuentoEmpresa()%></td>
+			</tr>
+			<%
+				}
+			%>
 
-					<th scope="row">4</th>
-					<td>Edy</td>
-					<td>3 Ave. 8-78</td>
-					<td>Daniel</td>
-					<td>50</td>
-				</tr>
-				<tr>
 			</tbody>
 		</table>
 	</div>
 
 	<div class="container well">
-		<button type="submit" class="btn btn-primary">Eliminar</button>
+
 		<form action="Menu.jsp">
 			<button type="submit" class="btn btn-secondary">Regresar al
 				Menu</button>
