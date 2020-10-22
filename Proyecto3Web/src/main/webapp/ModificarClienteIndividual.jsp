@@ -41,19 +41,19 @@ id: atributo// <>br:un espacio hacia abajo */
 <form action="ModificarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
 
 		<div class="form-group">
-		<label for="Codigo">Ingrese el codigo del cliente</label>
-		<input type="text"class="form-control" id="codigo" name="codigo" >
+		<label for="codigo">Ingrese el codigo del cliente</label>
+		<input type="text" class="form-control" id="codigo" name="codigo" >
 		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
 
 		<div class="form-group">
-			<label for="Nom">Nombre</label>
-			<input type="text" class="form-control" id="Nom" name="Nombre">
+			<label for="nombre">Nombre</label>
+			<input type="text" class="form-control" id="nombre" name="nombre">
 
-			<label for="Apelli">Apellido</label>
-			<input type="text"class="form-control" id="Apelli" name="Apellido">
+			<label for="apellido">Apellido</label>
+			<input type="text"class="form-control" id="apellido" name="apellido">
 
 			<label for="Dire">Direccion</label>
-			<input type="text"class="form-control" id="Dire" name="Direccion">
+			<input type="text"class="form-control" id="direccion" name="direccion">
 
 			<label for="Dp">Dpi</label>
 			<input type="text"class="form-control" id="Dp" name="Dpi">
@@ -76,12 +76,12 @@ id: atributo// <>br:un espacio hacia abajo */
 		%>
 <form action="ModificarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
 	<div class="form-group">
-		<label for="Codigo">Ingrese el codigo del cliente</label>
+		<label for="codigo">Ingrese el codigo del cliente</label>
 		<input type="text"class="form-control" id="codigo" name="codigo" value="<%=individual.getIdCliente()%>">
 		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
 
 		<div class="form-group">
-			<label for="Nom">Nombre</label>
+			<label for="nombre">Nombre</label>
 			<input type="text" class="form-control" id="nombre" name="nombre" value="<%=individual.getNombreCliente()%>">
 
 			<label for="Apelli">Apellido</label>
@@ -91,7 +91,7 @@ id: atributo// <>br:un espacio hacia abajo */
 			<input type="text"class="form-control" id="Dire" name="Direccion" value="<%=individual.getDireccion()%>">
 
 			<label for="Dp">Dpi</label>
-			<input type="text"class="form-control" id="Dp" name="Dpi" value="<%=individual.getDpi()%>" >
+			<input type="text"class="form-control" id="dpi" name="dpi" value="<%=individual.getDpi()%>" >
 
 		</div>
 
@@ -105,8 +105,13 @@ id: atributo// <>br:un espacio hacia abajo */
 
 </form>
 	<%
-				String nombre=request.getParameter("codigo");
-			Cliente_Individual client=new Cliente_Individual(Integer.parseInt(nombre),"d","s","s","s");
+				String codigo=request.getParameter("codigo");
+				String nombre=request.getParameter("nombre");
+				String apellido=request.getParameter("apellido");
+				String direccion=request.getParameter("direccion");
+				String dpi=request.getParameter("dpi");
+
+			Cliente_Individual client=new Cliente_Individual(Integer.parseInt(codigo),nombre,apellido,direccion,dpi);
 		dao.getDBmodificarcliente(client);
 
 	}
