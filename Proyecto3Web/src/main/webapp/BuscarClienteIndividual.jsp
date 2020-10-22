@@ -22,8 +22,8 @@
 		<form action="BuscarClienteIndividual.jsp" method="post"
 			class="form-control" style="width: 300px; height: 200px">
 			<div class="form-group">
-				<label for="C">Ingrese codigo para buscar cliente</label> <input
-					type="text" class="form-control" id="Codigo" name="Codigocliente">
+				<label for="codigo">Ingrese codigo para buscar cliente</label> <input
+					type="text" class="form-control" id="codigo" name="codigo">
 				<button type="submit" class="btn btn-primary">Buscar</button>
 			</div>
 		</form>

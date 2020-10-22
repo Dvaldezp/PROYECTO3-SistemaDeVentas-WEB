@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
-<%@ page import="src.main.java.ProductoDAO" %>
+<%@ page import="src.main.java.ManejoDAO" %>
 <%@ page import="src.main.java.Cliente_Individual" %>
+<%@ page import="src.main.java.ManejoDAO" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,9 +38,9 @@
   <tbody>
 
   <%
-      ProductoDAO productoDAO = new ProductoDAO();
+      ManejoDAO manejoDAO = new ManejoDAO();
 
-      List<Cliente_Individual> individuals = productoDAO.getDBclienteindividual();
+      List<Cliente_Individual> individuals = manejoDAO.getDBclienteindividual();
 
       int i=0;
       for(Cliente_Individual clienteIndividual: individuals){

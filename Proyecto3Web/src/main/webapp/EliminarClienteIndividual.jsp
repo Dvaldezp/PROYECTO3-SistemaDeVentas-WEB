@@ -1,3 +1,7 @@
+<%@ page import="src.main.java.ManejoDAO" %>
+<%@ page import="src.main.java.Cliente_Individual" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.SQLException" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,17 +22,29 @@
 	</div>
 <div class="container well/">
 
-<form action="EliminarClienteIndividual.jsp"method="post" class="form-control" style="width: 300px; height: 200px">
+<form action="EliminarClienteIndividual.jsp"method="get" class="form-control" style="width: 300px; height: 200px">
 	<div class="form-group">
-		<label for="C">Ingrese el codigo del cliente</label> <input type="text"
-			class="form-control" id="Codigo" name="Codigocliente">	
+		<label for="codigo">Ingrese el codigo del cliente</label> <input type="text"
+			class="form-control" id="codigo" name="codigo">
 		<button type="submit" class="btn btn-primary">Buscar Cliente</button>	
 	</div>
+
+    <button action=" <%
+                            try{
+                                ManejoDAO dao=new ManejoDAO();
+
+                            dao.getEliminarRegistroindividual(Integer.parseInt(request.getParameter("codigo")));
+
+                            }catch(Exception e){
+                                e.printStackTrace();
+                             }
+
+
+                        %>   " type="submit" class="btn btn-primary">Eliminar</button>
+
 	</form>
 </div>
 
-        
-        
 	<div class="container well/">
 	<table class="table">
 	<%/* Cargara los datos de los clientes */%>
@@ -42,41 +58,35 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-    
-      <th scope="row">1</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">2</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">3</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
-    <tr>
-    <th scope="row">4</th>
-      <td>Edy </td>
-      <td>Valdez </td>
-      <td> 2 ave.</td>
-      <td>1345132456</td>
-    </tr>
+  <%
+      ManejoDAO manejoDAO = new ManejoDAO();
+
+      List<Cliente_Individual> individuals = manejoDAO.getDBclienteindividual();
+
+      int i=0;
+      for(Cliente_Individual clienteIndividual: individuals){
+
+  %>
+  <tr>
+      <th scope="row"><%=clienteIndividual.getIdCliente()%><</th>
+      <td><%=clienteIndividual.getNombreCliente()%></td>
+      <td> <%=clienteIndividual.getApellidoCliente()%></td>
+      <td><%=clienteIndividual.getDireccion()%></td>
+      <td><%=clienteIndividual.getDpi()%></td>
+  </tr>
+  <%
+      }
+  %>
+
+
     </tbody>
 </table>
 </div>
 					
 					<div class="container well">
-					<button type="submit" class="btn btn-primary">Eliminar</button>
+
+
+
 					<form action="Menu.jsp">
 					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 					</form>

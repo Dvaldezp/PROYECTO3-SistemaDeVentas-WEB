@@ -1,5 +1,6 @@
-<%@ page import="src.main.java.ProductoDAO" %>
+<%@ page import="src.main.java.ManejoDAO" %>
 <%@ page import="src.main.java.Cliente_Individual" %>
+<%@ page import="src.main.java.ManejoDAO" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -30,7 +31,7 @@ id: atributo// <>br:un espacio hacia abajo */
 
 	<%
 		Cliente_Individual individual=null;
-		ProductoDAO dao=new ProductoDAO();
+		ManejoDAO dao=new ManejoDAO();
 		String prueba= request.getParameter("codigo");
 		if(prueba!=null){
 		individual=dao.getDBbuscarclienteIndi(Integer.parseInt(prueba));
