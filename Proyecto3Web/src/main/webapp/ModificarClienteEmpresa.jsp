@@ -1,3 +1,6 @@
+<%@ page import="src.main.java.Cliente_Empresa" %>
+<%@ page import="src.main.java.ProductoDAO" %>
+
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -12,41 +15,52 @@
 	crossorigin="anonymous">
 
 <div class="container well">
-	
+
 <h1>Modificar Cliente de Empresa</h1>
 </div>
+</head>
 
+</body>
 <div class="Container">
 <%
 	/* type: que tipo de dato podra almacenar
 id: atributo// <>br:un espacio hacia abajo */
 %>
 
+	<%
+		Cliente_Empresa empresa=null;
+		ProductoDAO dao=new ProductoDAO();
+		String prueba= request.getParameter("codigo");
+		if(prueba!=null){
+			empresa=dao.getDBbuscarclienteempre(Integer.parseInt(prueba));
+		}
+		if(empresa==null){
+	%>
 
-<form action="ModificarClienteEmpresa.jsp" method="post" class="form-control" style="width: 500px; height: 500px">
+
+<form action="ModificarClienteEmpresa.jsp" method="get" class="form-control" style="width: 500px; height: 500px">
+	    <div class="form-group">
+		    <label for="codigo">Ingrese el codigo del cliente</label>
+            <input type="text"class="form-control" id="codigo" name="codigo">
+		    <button type="submit" class="btn btn-primary">Buscar</button>
+	    </div>
+
 	<div class="form-group">
-		<label for="C">Ingrese el codigo del cliente</label> <input type="text"
-			class="form-control" id="Codigo" name="Codigocliente">
-		<button type="submit" class="btn btn-primary">Buscar</button>
-	</div>
-	
-	<div class="form-group">
-		<label for="N">Nombre</label> <input type="text"
-		class="form-control" id="Nom" name="nombre">
-		
-		<label for="D">Direccion</label> <input type="text"
-		class="form-control" id="Dire" name="Direccion">
-		
-		<label for="Con">Contacto</label> <input type="text"
-		class="form-control" id="Contac" name="Contacto">
-		
-		<label for="Des">Descuento Favorable</label> <input type="text"
-		class="form-control" id="Descu" name="Descuento">
-		
+		<label for="nombre">Nombre</label> <input type="text"
+		class="form-control" class="form-control" id="nombre" name="nombre">
 
-</div>
+		<label for="direccion">Direccion</label> <input type="text"
+		class="form-control" class="form-control" id="direccion" name="direccion">
 
-<div class="container well">
+		<label for="contacto">Contacto</label> <input type="text"
+		class="form-control" class="form-control" id="contacto" name="contacto">
+
+		<label for="descuento">Descuento Favorable</label> <input type="text"
+		class="form-control" class="form-control" id="descuento" name="descuento">
+
+    </div>
+
+
 					<button type="submit" class="btn btn-primary">Modificar</button>
 					<form action="Menu.jsp">
 					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
@@ -54,6 +68,59 @@ id: atributo// <>br:un espacio hacia abajo */
 					</div>
 </form>
 </div>
+
+<%
+}else{
+%>
+
+<form action="ModificarClienteEmpresa.jsp" method="get" class="form-control" style="width: 500px; height: 500px">
+    <div class="form-group">
+        <label for="codigo">Ingrese el codigo del cliente</label>
+        <input type="text"class="form-control" id="codigo" name="codigo" value="<%=empresa.getIdCliente()%>">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+
+
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" value="<%=empresa.getNombreCliente()%>">
+
+        <label for="direccion">Direccion</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" value="<%=empresa.getDireccion()%>">
+
+        <label for="contacto">Contacto</label>
+        <input type="text" class="form-control" id="contacto" name="contacto" value="<%=empresa.getContacto()%>">
+
+        <label for="descuento">Descuento Favorable</label>
+        <input type="text" class="form-control" id="descuento" name="descuento" value="<%=empresa.getDescuentoEmpresa()%>">
+
+    </div>
+
+
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <form action="Menu.jsp">
+            <button type="submit" class="btn btn-secondary">Regresar al Menu </button>
+        </form>
+    </div>
+</form>
+
+
+
+
+<%
+        String codigo=request.getParameter("codigo");
+        String nombre=request.getParameter("nombre");
+        String apellido="SA";
+        String direccion=request.getParameter("direccion");
+        String contacto=request.getParameter("contacto");
+        String descuento=request.getParameter("descuento");
+
+        Cliente_Empresa client=new Cliente_Empresa(Integer.parseInt(codigo),nombre,apellido,direccion,
+                contacto,15);
+        dao.getDBmodificarclienteempre(client);
+
+    }
+
+%>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -35,11 +35,11 @@
 						class="dropdown-item" href="ModificarClienteEmpresa.jsp">Modificar Cliente Empresa</a> <a
 						class="dropdown-item" href="ModificarClienteIndividual.jsp">Modificar Cliente Individual</a> <a
 						class="dropdown-item" href="EliminarClienteIndividual.jsp">Eliminar Cliente Individual</a> <a
-						class="dropdown-item" href="#">Eliminar Cliente Empresa</a> <a
-						class="dropdown-item" href="#">Buscar Cliente Individual</a> <a
-						class="dropdown-item" href="#">Buscar Cliente Empresa</a> <a
-						class="dropdown-item" href="#">Agregar Cliente Individual</a> <a 
-						class="dropdown-item" href="#">Agregar Cliente Empresa</a>
+						class="dropdown-item" href="EliminarClienteEmpresa.jsp">Eliminar Cliente Empresa</a> <a
+						class="dropdown-item" href="BuscarClienteIndividual.jsp">Buscar Cliente Individual</a> <a
+						class="dropdown-item" href="BuscarClienteEmpresa.jsp">Buscar Cliente Empresa</a> <a
+						class="dropdown-item" href="AgregarClienteIndividual.jsp">Agregar Cliente Individual</a> <a
+						class="dropdown-item" href="AgregarClienteEmpresa.jsp">Agregar Cliente Empresa</a>
 				</div>
 			</div>
 			<div class="d-flex">
