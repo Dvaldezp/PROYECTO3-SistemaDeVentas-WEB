@@ -1,3 +1,5 @@
+<%@ page import="src.main.java.Cliente_Empresa" %>
+<%@ page import="src.main.java.ManejoDAO" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -20,29 +22,68 @@
 	/* Se puede visualizar todos los clientes */
 %>
 <body>
-	<div class="container well/">
-		<h1>Buscar Cliente Empresa</h1>
-	</div>
-	<div class="container well/">
 
-		<form action="BuscarClienteEmpresa.jsp" method="post"
-			class="form-control" style="width: 300px; height: 200px">
-			<div class="form-group">
-				<label for="C">Ingrese codigo para buscar cliente</label> <input
-					type="text" class="form-control" id="Codigo" name="Codigocliente">
-				<button type="submit" class="btn btn-primary">Buscar</button>
-			</div>
-		</form>
-	</div>
+<%
+	Cliente_Empresa empresa=null;
+	ManejoDAO dao=new ManejoDAO();
+	String prueba= request.getParameter("codigo");
+	if(prueba!=null){
+		empresa=dao.getDBbuscarclienteempre(Integer.parseInt(prueba));
+	}
+	if(empresa==null){
+%>
 
+<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
 
+	<div class="form-group">
+		<label for="codigo">Ingrese el codigo del cliente</label>
+		<input type="text" class="form-control" id="codigo" name="codigo" >
+		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
 
-	<div class="container well/">
+		<div class="form-group">
+
+		</div>
 		<table class="table">
-			<%
-				/* Cargara los datos de los clientes */
-			%>
-			<thead>
+		<thead>
+		<tr>
+			<th scope="col">Id Cliente</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Dirección</th>
+			<th scope="col">Dpi</th>
+		</tr>
+		</thead>
+
+		<tr>
+			<th scope="row">nada<</th>
+			<td>nada</td>
+			<td>nada</td>
+			<td>nada</td>
+			<td>nada</td>
+		</tr>
+		</table>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Modificar</button>
+
+	</div>
+
+</form>
+
+</div>
+
+<%
+}else{
+%>
+<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+	<div class="form-group">
+		<label for="codigo">Ingrese el codigo del cliente</label>
+		<input type="text"class="form-control" id="codigo" name="codigo" value="<%=empresa.getIdCliente()%>">
+		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
+
+		<div class="container well/">
+			<table class="table">
+				<thead>
 				<tr>
 					<th scope="col">Id Cliente</th>
 					<th scope="col">Nombre</th>
@@ -50,51 +91,32 @@
 					<th scope="col">Contacto</th>
 					<th scope="col">Descuento</th>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
+				</thead>
 
-					<th scope="row">1</th>
-					<td>Edy</td>
-					<td>2 ave.</td>
-					<td>Piril</td>
-					<td>70</td>
-				</tr>
 				<tr>
-
-					<th scope="row">2</th>
-					<td>Edy</td>
-					<td>2 ave.</td>
-					<td>Piril</td>
-					<td>70</td>
+					<th scope="row"><%=empresa.getIdCliente()%><</th>
+					<td><%=empresa.getNombreCliente()%></td>
+					<td> <%=empresa.getApellidoCliente()%></td>
+					<td><%=empresa.getDireccion()%></td>
+					<td><%=empresa.getDescuentoEmpresa()%></td>
 				</tr>
-				<tr>
+			</table>
+		</div>
 
-					<th scope="row">3</th>
-					<td>Edy</td>
-					<td>2 ave.</td>
-					<td>Piril</td>
-					<td>70</td>
-				</tr>
-				<tr>
+		<button type="submit" class="btn btn-primary">Modificar</button>
 
-					<th scope="row">4</th>
-					<td>Edy</td>
-					<td>2 ave.</td>
-					<td>Piril</td>
-					<td>70</td>
-				</tr>
-				
-			</tbody>
-		</table>
 	</div>
-	
-	<div class="container well">
-		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Regresar al
-				Menu</button>
-		</form>
-	</div>
+
+</form>
+<%
+
+	}
+
+%>
+<form action="Menu.jsp">
+	<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
+</form>
+
 
 </body>
 </html>
