@@ -1,3 +1,6 @@
+<%@ page import="src.main.java.ManejoDAO" %>
+<%@ page import="src.main.java.Cliente_Individual" %>
+<%@ page import="java.util.List" %>
 <html>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -14,74 +17,100 @@
 
 <%/* Se puede visualizar todos los clientes */%>
 <body>
-	<div class="container well/">
-		<h1>Buscar Cliente Individual</h1>
-	</div>
-	<div class="container well/">
+<%
+	Cliente_Individual individual=null;
+	ManejoDAO dao=new ManejoDAO();
+	String prueba= request.getParameter("codigo");
+	if(prueba!=null){
+		individual=dao.getDBbuscarclienteIndi(Integer.parseInt(prueba));
+	}
+	if(individual==null){
+%>
 
-		<form action="BuscarClienteIndividual.jsp" method="post"
-			class="form-control" style="width: 300px; height: 200px">
-			<div class="form-group">
-				<label for="codigo">Ingrese codigo para buscar cliente</label> <input
-					type="text" class="form-control" id="codigo" name="codigo">
-				<button type="submit" class="btn btn-primary">Buscar</button>
-			</div>
-		</form>
-	</div>
+<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
 
+	<div class="form-group">
+		<label for="codigo">Ingrese el codigo del cliente</label>
+		<input type="text" class="form-control" id="codigo" name="codigo" >
+		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
 
+		<div class="form-group">
 
-	<div class="container well/">
+		</div>
 		<table class="table">
-			<%/* Cargara los datos de los clientes */%>
-			<thead>
-				<tr>
-					<th scope="col">Id Cliente</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido</th>
-					<th scope="col">Dirección</th>
-					<th scope="col">Dpi</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
+		<thead>
+		<tr>
+			<th scope="col">Id Cliente</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Dirección</th>
+			<th scope="col">Dpi</th>
+		</tr>
+		</thead>
 
-					<th scope="row">1</th>
-					<td>Edy</td>
-					<td>Valdez</td>
-					<td>2 ave.</td>
-					<td>1345132456</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Edy</td>
-					<td>Valdez</td>
-					<td>2 ave.</td>
-					<td>1345132456</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Edy</td>
-					<td>Valdez</td>
-					<td>2 ave.</td>
-					<td>1345132456</td>
-				</tr>
-				<tr>
-					<th scope="row">4</th>
-					<td>Edy</td>
-					<td>Valdez</td>
-					<td>2 ave.</td>
-					<td>1345132456</td>
-				</tr>
-			</tbody>
+		<tr>
+			<th scope="row">nada<</th>
+			<td>nada</td>
+			<td>nada</td>
+			<td>nada</td>
+			<td>nada</td>
+		</tr>
 		</table>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Modificar</button>
+
 	</div>
-	<div class="container well">
-		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Regresar al
-				Menu</button>
-		</form>
+
+</form>
+
+</div>
+
+<%
+}else{
+%>
+<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+	<div class="form-group">
+		<label for="codigo">Ingrese el codigo del cliente</label>
+		<input type="text"class="form-control" id="codigo" name="codigo" value="<%=individual.getIdCliente()%>">
+		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
+
+		<div class="container well/">
+			<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">Id Cliente</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Dirección</th>
+			<th scope="col">DPI</th>
+		</tr>
+		</thead>
+
+		<tr>
+		<th scope="row"><%=individual.getIdCliente()%><</th>
+		<td><%=individual.getNombreCliente()%></td>
+		<td> <%=individual.getApellidoCliente()%></td>
+		<td><%=individual.getDireccion()%></td>
+		<td><%=individual.getDpi()%></td>
+		</tr>
+			</table>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Modificar</button>
+
 	</div>
+
+</form>
+<%
+
+	}
+
+%>
+
+<form action="Menu.jsp">
+	<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
+</form>
 
 </body>
 </html>
