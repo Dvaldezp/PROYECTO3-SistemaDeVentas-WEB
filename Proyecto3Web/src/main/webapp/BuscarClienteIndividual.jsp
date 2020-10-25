@@ -49,11 +49,11 @@
 		</thead>
 
 		<tr>
-			<th scope="row">nada<</th>
-			<td>nada</td>
-			<td>nada</td>
-			<td>nada</td>
-			<td>nada</td>
+			<th scope="row">NO HAY DATOS<</th>
+			<td>NO HAY DATOS</td>
+			<td>NO HAY DATOS</td>
+			<td>NO HAY DATOS</td>
+			<td>NO HAY DATOS</td>
 		</tr>
 		</table>
 		</div>
