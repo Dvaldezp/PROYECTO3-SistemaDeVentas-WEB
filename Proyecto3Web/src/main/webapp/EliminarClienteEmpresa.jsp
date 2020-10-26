@@ -28,8 +28,7 @@
 			<div class="form-group">
 				<label for="codigo">Ingrese el codigo del cliente</label> <input
 					type="text" class="form-control" id="codigo" name="codigo">
-				<button type="submit" class="btn btn-primary">Buscar
-					Cliente</button>
+
 			</div>
 
 			<button action="<%
@@ -44,7 +43,6 @@
 
 
                         %>   " type="submit" class="btn btn-primary">Eliminar</button>
-
 
 
 

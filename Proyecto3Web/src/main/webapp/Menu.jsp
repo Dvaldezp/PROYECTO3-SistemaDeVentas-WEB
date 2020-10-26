@@ -62,7 +62,7 @@
 							<a class="dropdown-item" href="VerTodosLosProductos.jsp">Ver todos los producto</a> <a
 								class="dropdown-item" href="ModificarProducto.jsp">Modificar Producto</a> <a
 								class="dropdown-item" href="AgregarProducto.jsp">Agregar producto</a> <a
-								class="dropdown-item" href="VerTodosLosProductos.jsp">Eliminar Producto</a><a
+								class="dropdown-item" href="EliminarProducto.jsp">Eliminar Producto</a><a
 								class="dropdown-item" href="BuscarProducto.jsp">Ver Producto a detalle</a>
 						</div>
 					</div>

@@ -60,6 +60,14 @@ public class Producto {
 		this.cantidadInventario = cantidadInventario;
 		this.precio = precio;
 	}
+
+	public Producto(int codigo,String nombreProducto, String descripcion,int cantidadInventario, double precio) {
+		this.idProducto=codigo;
+		this.nombreProducto = nombreProducto;
+		this.descripcion=descripcion;
+		this.cantidadInventario = cantidadInventario;
+		this.precio = precio;
+	}
 	
 	/**
 	 * Regresa el producto

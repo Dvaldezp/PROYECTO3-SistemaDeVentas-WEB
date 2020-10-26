@@ -8,7 +8,6 @@
         /*Titulo de la pagina */
     %>
 
-
     <title>AgregarClienteIndividual</title>
 </head>
 
