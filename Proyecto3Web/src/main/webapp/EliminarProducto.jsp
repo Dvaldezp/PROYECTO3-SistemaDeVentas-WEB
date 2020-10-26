@@ -1,3 +1,6 @@
+<%@ page import="src.main.java.ManejoDAO" %>
+<%@ page import="src.main.java.Producto" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -8,7 +11,7 @@
 
 
 <title>Eliminar Producto</title>
-</head>
+
 
 <%
 	/*Hoja de estilo */
@@ -19,82 +22,84 @@
 	crossorigin="anonymous">
 
 
-<%
-	/* Se puede visualizar todos los clientes */
-%>
-<body>
+
+
 	<div class="container well/">
-		<h1>Eliminar Producto</h1>
+		<h1> Eliminar producto</h1>
 	</div>
 
+
+
 	<div class="container well/">
-
-		<form action="EliminarProducto.jsp" method="get" class="form-control"
-			style="width: 300px; height: 150px">
-
+		<form action="EliminarProducto.jsp"method="get" class="form-control" style="width: 300px; height: 200px">
 			<div class="form-group">
-				<label for="p">Ingrese Codigo de Producto</label> <input type="text"
-					class="form-control" id="Producto" name="Producto">
+				<label for="codigo">Ingrese el codigo del producto</label>
+				<input type="text" class="form-control" id="codigo" name="codigo">
 
-				
 			</div>
+
+			<button action=" <%
+                            try{
+                                ManejoDAO dao=new ManejoDAO();
+
+                            dao.getEliminarproducto(Integer.parseInt(request.getParameter("codigo")));
+
+                            }catch(Exception e){
+                                e.printStackTrace();
+                             }
+
+
+                        %>   " type="submit" class="btn btn-primary">Eliminar</button>
+
 		</form>
 	</div>
-
-
 
 	<div class="container well/">
 		<table class="table">
-			<%
-				/* Cargara los datos de los clientes de Empresa */
-			%>
+			<%/* Cargara los datos de los clientes */%>
 			<thead>
-				<tr>
-					<th scope="col">No.</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Descripcion</th>
-					<th scope="col">Tipo de Producto</th>
-					<th scope="col">Stock</th>
-					<th scope="col">Precio</th>
-				</tr>
+			<tr>
+				<th scope="col">Codigo de Producto</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Cantidad</th>
+				<th scope="col">Precio</th>
+			</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Estuardo</td>
-					<td>Candela</td>
-					<td>Plus</td>
-					<td>456</td>
-					<td>30</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Estuardo</td>
-					<td>Candela</td>
-					<td>Plus</td>
-					<td>456</td>
-					<td>30</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Estuardo</td>
-					<td>Candela</td>
-					<td>Plus</td>
-					<td>456</td>
-					<td>30</td>
-				</tr>
+			<%
+				ManejoDAO manejoDAO = new ManejoDAO();
+
+				List<Producto> productos = manejoDAO.getDBproducto();
+
+				int i=0;
+				for(Producto producto: productos){
+
+			%>
+			<tr>
+				<th scope="row"><%=producto.getIdProducto()%><</th>
+				<td><%=producto.getNombreProducto()%></td>
+				<td> <%=producto.getDescripcion()%></td>
+				<td><%=producto.getCantidadInventario()%></td>
+				<td><%=producto.getPrecio()%></td>
+			</tr>
+			<%
+				}
+			%>
+
+
 			</tbody>
 		</table>
-		<button type="submit" class="btn btn-primary">Eliminar </button>
 	</div>
 
 	<div class="container well">
+
+
+
 		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Regresar al
-				Menu</button>
+			<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 		</form>
 	</div>
-
 
 </body>
 </html>

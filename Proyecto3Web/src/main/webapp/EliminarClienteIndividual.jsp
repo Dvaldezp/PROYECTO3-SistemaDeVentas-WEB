@@ -15,7 +15,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
-
+<body>
 	<%/* Se puede visualizar todos los clientes */%>
 	<div class="container well/">
 	<h1> Eliminar Cliente Individual</h1>
@@ -26,7 +26,7 @@
 	<div class="form-group">
 		<label for="codigo">Ingrese el codigo del cliente</label> <input type="text"
 			class="form-control" id="codigo" name="codigo">
-		<button type="submit" class="btn btn-primary">Buscar Cliente</button>	
+
 	</div>
 
     <button action=" <%
@@ -82,7 +82,7 @@
     </tbody>
 </table>
 </div>
-					
+
 					<div class="container well">
 
 
@@ -91,7 +91,7 @@
 					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 					</form>
 					</div>
-					
+
 </body>
 </html>
 
