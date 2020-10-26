@@ -87,11 +87,11 @@
         <tbody>
         <tr>
 
-            <th scope="row">1</th>
-            <td>Edy</td>
-            <td>Valdez</td>
-            <td>2 ave.</td>
-            <td>1345132456</td>
+            <th scope="row">NO HAY DATOS</th>
+            <td>NO HAY DATOS</td>
+            <td>VNO HAY DATOS</td>
+            <td>NO HAY DATOS</td>
+            <td>NO HAY DATOS</td>
         </tr>
 
         </tbody>

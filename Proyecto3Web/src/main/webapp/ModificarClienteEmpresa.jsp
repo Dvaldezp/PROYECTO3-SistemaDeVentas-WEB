@@ -66,7 +66,7 @@ id: atributo// <>br:un espacio hacia abajo */
 					<form action="Menu.jsp">
 					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 					</form>
-					</div>
+
 </form>
 </div>
 

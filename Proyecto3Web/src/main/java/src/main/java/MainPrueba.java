@@ -7,8 +7,8 @@ public class MainPrueba {
 
         ManejoDAO dao=new ManejoDAO();
         dao.grabarProducto();
-        dao.getDBclienteindividual();
-        Cliente_Individual indi= null;
+        //dao.getDBclienteindividual();
+        //Cliente_Individual indi= null;
         //indi=dao.getDBbuscarclienteIndi(3);
         //System.out.println(indi.toString());
         //dao.getEliminarRegistroempresa(23);
