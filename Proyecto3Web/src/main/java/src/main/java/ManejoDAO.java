@@ -13,15 +13,64 @@ public class ManejoDAO {
             Statement statement = VariablesGlobales.conn.createStatement();
             String nombre1 = "hola";
             Integer precio = 25;
-
+            String dml = "INSERT INTO factura(idfactura,idcliente) VALUES("+"3"+","+"39"+")";
             //String dml = "INSERT INTO producto(nombre,descripcion,cantidad,precio) VALUES('"+nombre1+"','"+nombre1+"',"+precio+","+precio+")";
-            String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES('"+nombre1+"','"+nombre1+"','"+nombre1+"','"+nombre1+"')";
+            //String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES('"+nombre1+"','"+nombre1+"','"+nombre1+"','"+nombre1+"')";
             //String dml = "INSERT INTO clienteempresa(nombre,direccion,contacto,descuento,sociedad) VALUES('" + nombre1 + "','" + nombre1 + "','" + nombre1 + "'," + precio + ",'" + nombre1 + "')";
             System.out.println("dml = " + dml);
             statement.executeUpdate(dml);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+
+
+
+    public Producto grabarProducto(String nombre, String descripcion, int cantidad, double precio) {
+        Producto producto=null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            producto=new Producto(nombre,descripcion,cantidad,precio);
+            String dml = "INSERT INTO producto(nombre,descripcion,cantidad,precio) VALUES("+"'"+nombre+"',"+"'"+descripcion+"',"+cantidad+","+precio+")";
+            System.out.println("dml = " + dml);
+            statement.executeUpdate(dml);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return producto;
+    }
+
+
+
+    public Cliente_Individual grabarClienteIndi(String nombre, String apellido, String direccion, String dpi) {
+        Cliente_Individual cliente=null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            cliente=new Cliente_Individual(1,nombre,apellido,direccion,dpi);
+            String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES("+"'"+nombre+"',"+"'"+apellido+"',"+"'"+direccion+"',"+"'"+dpi+"'"+")";
+            System.out.println("dml = " + dml);
+            statement.executeUpdate(dml);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cliente;
+    }
+
+
+    public Cliente_Empresa grabarClienteEmpre(String nombre, String direccion, String contacto,int descuento) {
+        Cliente_Empresa cliente=null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            cliente=new Cliente_Empresa(1,nombre,"SA",direccion,contacto,descuento);
+            String dml = "INSERT INTO clienteempresa(nombre,direccion,contacto,descuento,sociedad) VALUES("+"'"+nombre+"',"+"'"+direccion+"',"+"'"+contacto+"',"+
+                    descuento+","+"'"+"sa"+"'"+")";
+            System.out.println("dml = " + dml);
+            statement.executeUpdate(dml);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cliente;
     }
 
 

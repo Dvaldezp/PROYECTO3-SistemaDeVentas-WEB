@@ -50,7 +50,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 						<a class="dropdown-item" href="RealizarFactura.jsp">Realizar Factura</a> <a
 						   class="dropdown-item" href="VerTodasLasFacturas.jsp">Ver todas las facturas</a> <a
-						   class="dropdown-item" href="#">Buscar Factura</a>
+						   class="dropdown-item" href="BuscarFactura.jsp">Buscar Factura</a>
 					</div>
 				</div>
 				<div class="d-flex">
@@ -59,11 +59,11 @@
 							id="dropdownMenuOffset" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" data-offset="10,20">Inventario</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-							<a class="dropdown-item" href="#">Ver todos los producto</a> <a
-								class="dropdown-item" href="#">Modificar Producto</a> <a 
-								class="dropdown-item" href="#">Agregar producto</a> <a
-								class="dropdown-item" href="#">Eliminar Producto</a><a 
-								class="dropdown-item" href="#">Ver Producto a detalle</a>
+							<a class="dropdown-item" href="VerTodosLosProductos.jsp">Ver todos los producto</a> <a
+								class="dropdown-item" href="ModificarProducto.jsp">Modificar Producto</a> <a
+								class="dropdown-item" href="AgregarProducto.jsp">Agregar producto</a> <a
+								class="dropdown-item" href="VerTodosLosProductos.jsp">Eliminar Producto</a><a
+								class="dropdown-item" href="BuscarProducto.jsp">Ver Producto a detalle</a>
 						</div>
 					</div>
 					<div class="d-flex">

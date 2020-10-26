@@ -47,7 +47,7 @@
 
   %>
   <tr>
-      <th scope="row"><%=clienteIndividual.getIdCliente()%><</th>
+      <th scope="row"><%=clienteIndividual.getIdCliente()%>.</th>
       <td><%=clienteIndividual.getNombreCliente()%></td>
       <td> <%=clienteIndividual.getApellidoCliente()%></td>
       <td><%=clienteIndividual.getDireccion()%></td>
