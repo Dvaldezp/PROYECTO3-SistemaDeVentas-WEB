@@ -13,8 +13,9 @@ public class ManejoDAO {
             Statement statement = VariablesGlobales.conn.createStatement();
             String nombre1 = "hola";
             Integer precio = 25;
+            String dml = "INSERT INTO factura(idcliente) VALUES("+"29"+")";
             //String dml = "INSERT INTO factura(idfactura,idcliente) VALUES("+"3"+","+"39"+")";
-            String dml = "INSERT INTO detallefactura(numerodefactura,idproducto,idfactura) VALUES("+"4"+","+"8"+","+"8"+")";
+            //String dml = "INSERT INTO detallefactura(numerodefactura,idproducto,idfactura) VALUES("+"4"+","+"8"+","+"8"+")";
             //String dml = "INSERT INTO producto(nombre,descripcion,cantidad,precio) VALUES('"+nombre1+"','"+nombre1+"',"+precio+","+precio+")";
             //String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES('"+nombre1+"','"+nombre1+"','"+nombre1+"','"+nombre1+"')";
             //String dml = "INSERT INTO clienteempresa(nombre,direccion,contacto,descuento,sociedad) VALUES('" + nombre1 + "','" + nombre1 + "','" + nombre1 + "'," + precio + ",'" + nombre1 + "')";
@@ -25,6 +26,41 @@ public class ManejoDAO {
         }
     }
 
+
+    public Factura grabarFactura(int codigocliente) {
+        Factura factura=null;
+        List<Factura> fac = new ArrayList<Factura>();
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            String dml = "INSERT INTO factura(idcliente) VALUES('"+codigocliente+"')";
+            //System.out.println("dml = " + dml);
+            statement.executeUpdate(dml);
+
+            String consulta = "SELECT idfactura"+
+                    " FROM factura";
+            ResultSet rs = statement.executeQuery(consulta);
+
+
+            while (rs.next()) {
+                fac.add(new Factura(rs.getInt("idfactura"),codigocliente));
+            }
+
+            int mayor=0;
+            for (int i=0;i<fac.size();i++){
+
+                for (int j=1;j<fac.size();j++){
+                    if (fac.get(i).getNumerodefactura()>fac.get(j).getNumerodefactura()){
+                        mayor=fac.get(i).getNumerodefactura();
+                    }
+                }
+            }
+            System.out.println(mayor);
+            factura=new Factura(mayor,codigocliente);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return factura;
+    }
 
 
 
@@ -50,8 +86,8 @@ public class ManejoDAO {
             Statement statement = VariablesGlobales.conn.createStatement();
             cliente=new Cliente_Individual(1,nombre,apellido,direccion,dpi);
             String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES("+"'"+nombre+"',"+"'"+apellido+"',"+"'"+direccion+"',"+"'"+dpi+"'"+")";
-            System.out.println("dml = " + dml);
             statement.executeUpdate(dml);
+            System.out.println("dml = " + dml);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
