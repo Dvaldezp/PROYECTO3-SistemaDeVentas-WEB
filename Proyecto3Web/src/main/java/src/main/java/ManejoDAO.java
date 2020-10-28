@@ -40,7 +40,6 @@ public class ManejoDAO {
                     " FROM factura";
             ResultSet rs = statement.executeQuery(consulta);
 
-
             while (rs.next()) {
                 fac.add(new Factura(rs.getInt("idfactura"),codigocliente));
             }
@@ -61,7 +60,6 @@ public class ManejoDAO {
         }
         return factura;
     }
-
 
 
     public Producto grabarProducto(String nombre, String descripcion, int cantidad, double precio) {

@@ -73,7 +73,6 @@
 
 					%>
 
-
 					" type="submit" class="btn btn-primary">Agregar Cliente</button>
 				</div>
 
