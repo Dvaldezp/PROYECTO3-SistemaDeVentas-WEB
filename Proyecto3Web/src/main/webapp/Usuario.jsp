@@ -24,31 +24,44 @@
 id: atributo// <>br:un espacio hacia abajo */
 %>
 
-<form action="Usuario.jsp">
+<form action="Usuario.jsp" method="get">
 	<div class="form-group">
-		<label for="Nombre">Usuario</label> <input type="text"
-			class="form-control" id="Nombre" name="FullName"
+		<label for="nombre">Usuario</label> <input type="text"
+			class="form-control" id="nombre" name="nombre"
 			aria-describedby="emailHelp"> <small id="emailHelp"
 			class="form-text text-muted"> </small>
 		<%String full=request.getParameter("FullName"); %>
 	</div>
 	<div class="form-group">
 		<label for="password">Contraseña</label> <input
-			type="password" class="form-control" id="password" name="pass">
+			type="password" class="form-control" id="password" name="password">
 	</div>
-</form>
 
-<%
-	String hola="hola";
-	System.out.println(hola+full);
-	if (1==1){
-%>
-<form action="Menu.jsp">
-	<button type="submit" class="btn btn-secondary">Ingresar</button>
+
+
+
+
+<form>
+	<button action="<%
+
+	try{
+		String hola="hola";
+
+		String nombre=request.getParameter("nombre");
+		String pass=request.getParameter("password");
+
+		System.out.println(hola+nombre+pass);
+     if(nombre.equals(hola) && pass.equals(hola)){
+      response.sendRedirect("Menu.jsp");
+     }
+
+	}catch (Exception e){
+		e.printStackTrace();
+	}
+
+    %>" type="submit" class="btn btn-secondary">Ingresar</button>
 </form>
-<%
-	}else{System.out.println(hola+full);}
-%>
+</form>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
