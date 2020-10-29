@@ -63,15 +63,12 @@
   </tbody>
 </table>
 </div>
-
 					<div class="container well">
-					<button type="submit" class="btn btn-primary">Cargar</button>
 					<form action="Menu.jsp">
 					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 					</form>
 					</div>
 
-					
 
 </body>
 </html>

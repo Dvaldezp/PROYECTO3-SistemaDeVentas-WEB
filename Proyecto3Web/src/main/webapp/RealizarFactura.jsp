@@ -1,5 +1,6 @@
-<%@ page import="src.main.java.Factura" %>
-<%@ page import="src.main.java.ManejoDAO" %>
+<%@ page import="src.main.java.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -33,20 +34,24 @@
 
 		<%
 			Factura fac=null;
+			Cliente_Individual indi=null;
 			ManejoDAO manejo=new ManejoDAO();
 			String nombre= request.getParameter("codigo");
+
+
 
 			if(nombre!=null){
 
 				try {
-					fac=manejo.grabarFactura(Integer.parseInt(nombre));
+
+					indi=manejo.getDBbuscarclienteIndi(fac.getIdcliente());
 
 				}catch (Exception e){
 					e.printStackTrace();
 				}
 
 			}
-			if(fac==null){
+			if(Acceso.isAccess()==false){
 		%>
 
 
@@ -61,11 +66,25 @@
 					<%
 
 						try{
-							Factura factura1=null;
-							ManejoDAO dao=new ManejoDAO();
 
+							ManejoDAO dao=new ManejoDAO();
+							fac=manejo.grabarFactura(Integer.parseInt(nombre));
 							String codigo= request.getParameter("codigo");
-							factura1=dao.grabarFactura(Integer.parseInt(codigo));
+
+
+							if(fac!=null){
+
+								if (Acceso.isAccess()==false){
+
+									Clienteuniversal.setCliente(dao.getDBbuscarclienteIndi(fac.getIdcliente()));
+									Facturauniversal.setFactura(dao.getDBbuscarfactura(fac.getNumerodefactura()));
+								Acceso.setAccess(true);
+								}
+
+								if(1==1){
+   								   response.sendRedirect("RealizarFactura.jsp");
+    								 }
+							}
 						}catch (Exception e){
 							e.printStackTrace();
 						}
@@ -76,16 +95,6 @@
 					" type="submit" class="btn btn-primary">Agregar Cliente</button>
 				</div>
 
-				<label for="factura">Ingrese codigo de producto a facturar</label><input
-					type="text" class="form-control" id="factura" name="factura" value="">
-
-				<label for="Cantidad">Cantidad</label> <input type="text"
-					class="form-control" id="Cantidad" name="Cantidad">
-
-				<button type="submit" class="btn btn-primary">Agregar Items</button>
-
-
-
 			</div>
 		</form>
 	</div>
@@ -94,9 +103,34 @@
 	<div class="container well/">
 		<h2>Productos Agregados</h2>
 	</div>
-
+	</body>
+	<body>
 	<%
 	}else{
+
+		Producto producto=null;
+		ManejoDAO dao=new ManejoDAO();
+		String codigo= request.getParameter("idproducto");
+		List<Producto> produlist=new ArrayList<Producto>();
+		Acceso.setAccess(true);
+
+		try {
+			if(codigo!=null){
+				System.out.println(codigo);
+				String cantidad= request.getParameter("cantidad");
+
+				producto=dao.getDBbuscarproducto(Integer.parseInt(codigo));
+
+				if(dao.verificarStock(Integer.parseInt(codigo),Integer.parseInt(cantidad))){
+					producto=dao.grabarDetalle(Integer.parseInt(codigo), fac.getNumerodefactura(),Integer.parseInt(cantidad));
+					Cadenproducto.producto.add(producto);
+				}
+
+		}
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	%>
 
 	<div class="container well/">
@@ -106,16 +140,30 @@
 			%>
 			<thead>
 			<tr>
-				<th scope="col">Id Cliente</th>
-				<th scope="col">Nombre</th>
+				<th scope="col">No. de factura</th>
+				<th scope="col">Codigo Cliente</th>
+				<th scope="col">Nombre de Cliente</th>
 
 			</tr>
 			</thead>
 			<tbody>
 			<tr>
 
-				<th scope="row"><%=fac.getNumerodefactura()%></th>
-				<td><%=fac.getIdcliente()%></td>
+				<%
+				try {
+
+
+				%>
+
+				<th scope="row"><%=Facturauniversal.getFactura().getNumerodefactura()%></th>
+				<td><%=Facturauniversal.getFactura().getIdcliente()%></td>
+				<td><%=Clienteuniversal.getCliente().getNombreCliente()%></td>
+				<%}catch (Exception e){
+					e.printStackTrace();
+				}
+
+				%>
+
 
 			</tr>
 
@@ -123,6 +171,74 @@
 		</table>
 	</div>
 
+	<form>
+
+		<label for="idproducto">Ingrese codigo de producto a facturar</label>
+		<input type="text" class="form-control" id="idproducto" name="idproducto" >
+
+		<label for="cantidad">Cantidad</label>
+		<input type="text" class="form-control" id="cantidad" name="cantidad">
+
+		<button type="submit" class="btn btn-primary">Agregar Items</button>
+
+
+	</form>
+
+
+
+		<table class="table">
+			<%
+				/* Cargara los datos de los clientes */
+			%>
+			<thead>
+			<tr>
+				<th scope="col">Id Producto</th>
+				<th scope="col">Nombre producto</th>
+				<th scope="col">Cantidad </th>
+				<th scope="col">subtotal </th>
+
+			</tr>
+			</thead>
+			<tbody>
+
+
+
+				<%
+						try {
+
+						for (int i=0;i<Cadenproducto.producto.size();i++) {
+
+				%>
+				<tr>
+				<th scope="row"><%=Cadenproducto.producto.get(i).getIdProducto()%></th>
+				<td><%=Cadenproducto.producto.get(i).getNombreProducto()%></td>
+				<td><%=Cadenproducto.producto.get(i).getCantidadInventario()%></td>
+				<td><%=Cadenproducto.producto.get(i).getCantidadInventario()%></td>
+				</tr>
+				<%}
+							}catch (Exception e){
+							e.printStackTrace();}
+
+
+				%>
+
+
+
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="container well">
+		<form action="Menu.jsp">
+			<button type="submit" class="btn btn-secondary">Finalizar Facturacion</button>
+		</form>
+	</div>
+
+
+
+
+	</body>
 	<%
 
 		}

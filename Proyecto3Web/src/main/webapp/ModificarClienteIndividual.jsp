@@ -45,6 +45,7 @@ id: atributo// <>br:un espacio hacia abajo */
 		<label for="codigo">Ingrese el codigo del cliente</label>
 		<input type="text" class="form-control" id="codigo" name="codigo" >
 		<button type="submit" class="btn btn-primary">Buscar Cliente</button>
+		</div>
 
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
@@ -63,14 +64,11 @@ id: atributo// <>br:un espacio hacia abajo */
 
 
 	<button type="submit" class="btn btn-primary">Modificar</button>
-	<form action="Menu.jsp">
-    <button type="submit" class="btn btn-secondary">Regresar al Menu </button>
-    </form>
-    </div>
+
     
 </form>
 
-</div>
+
 
 <%
 	}else{
@@ -96,12 +94,8 @@ id: atributo// <>br:un espacio hacia abajo */
 
 		</div>
 
-
-
 		<button type="submit" class="btn btn-primary">Modificar</button>
-		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
-		</form>
+
 	</div>
 
 </form>
@@ -118,7 +112,9 @@ id: atributo// <>br:un espacio hacia abajo */
 	}
 
 %>
-
+	<form action="Menu.jsp">
+		<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
+	</form>
 
 
 

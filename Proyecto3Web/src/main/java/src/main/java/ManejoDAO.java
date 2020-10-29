@@ -13,9 +13,9 @@ public class ManejoDAO {
             Statement statement = VariablesGlobales.conn.createStatement();
             String nombre1 = "hola";
             Integer precio = 25;
-            String dml = "INSERT INTO factura(idcliente) VALUES("+"29"+")";
+            //String dml = "INSERT INTO factura(idcliente) VALUES("+"29"+")";
             //String dml = "INSERT INTO factura(idfactura,idcliente) VALUES("+"3"+","+"39"+")";
-            //String dml = "INSERT INTO detallefactura(numerodefactura,idproducto,idfactura) VALUES("+"4"+","+"8"+","+"8"+")";
+            String dml = "INSERT INTO detallefactura(idproducto,idfactura,cantidadcompra,subtotal) VALUES("+"8"+","+"8"+","+"8,"+"5"+")";
             //String dml = "INSERT INTO producto(nombre,descripcion,cantidad,precio) VALUES('"+nombre1+"','"+nombre1+"',"+precio+","+precio+")";
             //String dml = "INSERT INTO clienteindividual(nombre,apellido,direccion,dpi) VALUES('"+nombre1+"','"+nombre1+"','"+nombre1+"','"+nombre1+"')";
             //String dml = "INSERT INTO clienteempresa(nombre,direccion,contacto,descuento,sociedad) VALUES('" + nombre1 + "','" + nombre1 + "','" + nombre1 + "'," + precio + ",'" + nombre1 + "')";
@@ -68,6 +68,22 @@ public class ManejoDAO {
             Statement statement = VariablesGlobales.conn.createStatement();
             producto=new Producto(nombre,descripcion,cantidad,precio);
             String dml = "INSERT INTO producto(nombre,descripcion,cantidad,precio) VALUES("+"'"+nombre+"',"+"'"+descripcion+"',"+cantidad+","+precio+")";
+            System.out.println("dml = " + dml);
+            statement.executeUpdate(dml);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return producto;
+    }
+
+
+    public Producto grabarDetalle(int codigo,int numerodefactura, int cantidad) {
+        Producto producto=null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            producto=getDBbuscarproducto(codigo);
+            Double subtotal=(cantidad*producto.getPrecio());
+            String dml = "INSERT INTO detallefactura(idproducto,idfactura,cantidadcompra,subtotal) VALUES("+producto.getIdProducto()+","+numerodefactura+","+cantidad+","+subtotal+")";
             System.out.println("dml = " + dml);
             statement.executeUpdate(dml);
         } catch (SQLException throwables) {
@@ -187,6 +203,47 @@ public class ManejoDAO {
     }
 
 
+    public boolean verificarStock(int codigo, int cantidad){
+        boolean verificacion=false;
+        try {
+            if(getDBbuscarproducto(codigo).getCantidadInventario()>=cantidad){
+                verificacion=true;
+                System.out.println("si se puede");
+               }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return verificacion;
+
+    }
+
+    public Producto getDBbuscarproducto(int codigo) {
+
+       Producto product = null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            String consulta = " SELECT codigo,nombre, descripcion,cantidad,precio" +
+                    " FROM producto";
+            ResultSet rs = statement.executeQuery(consulta);
+            while (rs.next()) {
+                if (rs.getInt("codigo") == codigo) {
+
+                    product = new Producto(rs.getInt("codigo"), rs.getString("nombre"), rs.getString("descripcion"),
+                            rs.getInt("cantidad"),Double.parseDouble(rs.getString("precio")));
+
+                }
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return product;
+
+    }
+
 
     public Cliente_Individual getDBbuscarclienteIndi(int codigo) {
 
@@ -213,6 +270,33 @@ public class ManejoDAO {
 
     }
 
+    public Factura getDBbuscarfactura(int codigo) {
+    System.out.println(codigo);
+        Factura fac = null;
+        try {
+            Statement statement = VariablesGlobales.conn.createStatement();
+            String consulta = " SELECT idfactura, idcliente, totalprecio" +
+                    " FROM factura";
+            ResultSet rs = statement.executeQuery(consulta);
+            while (rs.next()) {
+                if (rs.getInt("idfactura") == codigo) {
+
+                    fac = new Factura(rs.getInt("idfactura"), rs.getInt("idcliente"));
+
+                }
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return fac;
+
+    }
+
+
+
+
     public Cliente_Empresa getDBbuscarclienteempre(int codigo) {
 
         Cliente_Empresa cliente = null;
@@ -236,9 +320,7 @@ public class ManejoDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        {
 
-        }
 
         return cliente;
 
