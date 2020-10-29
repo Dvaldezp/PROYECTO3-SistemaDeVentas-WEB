@@ -1,6 +1,7 @@
 <%@ page import="src.main.java.ManejoDAO" %>
 <%@ page import="src.main.java.Factura" %>
 <%@ page import="java.util.List" %>
+<%@ page import="src.main.java.Cliente_Individual" %>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -39,6 +40,7 @@
 		<tr>
 			<th scope="col">Numero de Factura</th>
 			<th scope="col">Id Cliente</th>
+			<th scope="col">Nombre del cliente</th>
 
 		</tr>
 		</thead>
@@ -46,24 +48,23 @@
 
 		<%
 			ManejoDAO manejoDAO = new ManejoDAO();
-
+			Cliente_Individual indi=null;
 			List<Factura> facturas = manejoDAO.getDBfactura();
 
 			int i=0;
 			for(Factura factura: facturas){
+				indi=manejoDAO.getDBbuscarclienteIndi(factura.getIdcliente());
 
 		%>
 		<tr>
 			<th scope="row"><%=factura.getNumerodefactura()%>.</th>
 			<td><%=factura.getIdcliente()%></td>
+			<td><%=indi.getNombreCliente()%></td>
 
 		</tr>
 		<%
 			}
 		%>
-
-
-
 
 		</tbody>
 	</table>

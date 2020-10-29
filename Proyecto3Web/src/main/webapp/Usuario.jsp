@@ -37,10 +37,6 @@ id: atributo// <>br:un espacio hacia abajo */
 			type="password" class="form-control" id="password" name="password">
 	</div>
 
-
-
-
-
 <form>
 	<button action="<%
 
@@ -73,8 +69,6 @@ id: atributo// <>br:un espacio hacia abajo */
 	crossorigin="anonymous"></script>
 
 </body>
-
-
 
 </html>
 

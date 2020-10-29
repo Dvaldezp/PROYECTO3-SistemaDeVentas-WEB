@@ -33,7 +33,12 @@ id: atributo// <>br:un espacio hacia abajo */
 		ManejoDAO dao=new ManejoDAO();
 		String prueba= request.getParameter("codigo");
 		if(prueba!=null){
-			empresa=dao.getDBbuscarclienteempre(Integer.parseInt(prueba));
+			try {
+				empresa=dao.getDBbuscarclienteempre(Integer.parseInt(prueba));
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+
 		}
 		if(empresa==null){
 	%>
@@ -61,14 +66,13 @@ id: atributo// <>br:un espacio hacia abajo */
 
     </div>
 
-
 					<button type="submit" class="btn btn-primary">Modificar</button>
-					<form action="Menu.jsp">
-					<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
-					</form>
+
+
 
 </form>
-</div>
+
+
 
 <%
 }else{
@@ -98,9 +102,7 @@ id: atributo// <>br:un espacio hacia abajo */
 
 
         <button type="submit" class="btn btn-primary">Modificar</button>
-        <form action="Menu.jsp">
-            <button type="submit" class="btn btn-secondary">Regresar al Menu </button>
-        </form>
+
     </div>
 </form>
 
@@ -122,6 +124,10 @@ id: atributo// <>br:un espacio hacia abajo */
     }
 
 %>
+
+<form action="Menu.jsp">
+	<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
+</form>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
