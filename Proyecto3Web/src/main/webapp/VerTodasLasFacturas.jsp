@@ -41,6 +41,7 @@
 			<th scope="col">Numero de Factura</th>
 			<th scope="col">Id Cliente</th>
 			<th scope="col">Nombre del cliente</th>
+			<th scope="col">total factura</th>
 
 		</tr>
 		</thead>
@@ -49,20 +50,30 @@
 		<%
 			ManejoDAO manejoDAO = new ManejoDAO();
 			Cliente_Individual indi=null;
-			List<Factura> facturas = manejoDAO.getDBfactura();
+			List<Factura> facturas=null;
+			try {
+				facturas= manejoDAO.getDBfactura();
+
+
+
 
 			int i=0;
 			for(Factura factura: facturas){
-				indi=manejoDAO.getDBbuscarclienteIndi(factura.getIdcliente());
+					indi=manejoDAO.getDBbuscarclienteIndi(factura.getIdcliente());
+
+
 
 		%>
 		<tr>
 			<th scope="row"><%=factura.getNumerodefactura()%>.</th>
 			<td><%=factura.getIdcliente()%></td>
 			<td><%=indi.getNombreCliente()%></td>
+			<td><%=factura.getTotalprecio()%></td>
 
 		</tr>
 		<%
+			}	}catch (Exception e){
+
 			}
 		%>
 

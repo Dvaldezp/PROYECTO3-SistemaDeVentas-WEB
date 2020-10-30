@@ -38,8 +38,6 @@
 			ManejoDAO manejo=new ManejoDAO();
 			String nombre= request.getParameter("codigo");
 
-
-
 			if(nombre!=null){
 
 				try {
@@ -66,7 +64,6 @@
 					<%
 
 						try{
-
 							ManejoDAO dao=new ManejoDAO();
 							fac=manejo.grabarFactura(Integer.parseInt(nombre));
 							String codigo= request.getParameter("codigo");
@@ -88,8 +85,6 @@
 						}catch (Exception e){
 							e.printStackTrace();
 						}
-
-
 					%>
 
 					" type="submit" class="btn btn-primary">Agregar Cliente</button>
@@ -122,7 +117,8 @@
 				producto=dao.getDBbuscarproducto(Integer.parseInt(codigo));
 
 				if(dao.verificarStock(Integer.parseInt(codigo),Integer.parseInt(cantidad))){
-					producto=dao.grabarDetalle(Integer.parseInt(codigo), fac.getNumerodefactura(),Integer.parseInt(cantidad));
+					producto=dao.grabarDetalle(Integer.parseInt(codigo), Facturauniversal.getFactura().getNumerodefactura(),Integer.parseInt(cantidad));
+
 					Cadenproducto.producto.add(producto);
 				}
 
@@ -185,7 +181,6 @@
 	</form>
 
 
-
 		<table class="table">
 			<%
 				/* Cargara los datos de los clientes */
@@ -201,11 +196,8 @@
 			</thead>
 			<tbody>
 
-
-
 				<%
 						try {
-
 						for (int i=0;i<Cadenproducto.producto.size();i++) {
 
 				%>
@@ -213,16 +205,12 @@
 				<th scope="row"><%=Cadenproducto.producto.get(i).getIdProducto()%></th>
 				<td><%=Cadenproducto.producto.get(i).getNombreProducto()%></td>
 				<td><%=Cadenproducto.producto.get(i).getCantidadInventario()%></td>
-				<td><%=Cadenproducto.producto.get(i).getCantidadInventario()%></td>
+				<td><%=Cadenproducto.producto.get(i).getPrecio()%></td>
 				</tr>
 				<%}
 							}catch (Exception e){
 							e.printStackTrace();}
-
-
 				%>
-
-
 
 
 			</tbody>
@@ -230,30 +218,24 @@
 	</div>
 
 	<div class="container well">
-		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Finalizar Facturacion</button>
+		<form action="Finalizarfacturacion.jsp">
+			<button type="submit" class="btn btn-secondary" >Finalizar</button>
 		</form>
 	</div>
-
-
-
 
 	</body>
 	<%
-
 		}
-
 	%>
-
-
-
 
 	<div class="container well">
 		<form action="Menu.jsp">
-			<button type="submit" class="btn btn-secondary">Regresar al
-				Menu</button>
+			<button type="submit" class="btn btn-secondary" >Regresar al Menu</button>
 		</form>
 	</div>
+
+
+
 
 </body>
 </html>

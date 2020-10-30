@@ -1,7 +1,7 @@
 <%@ page import="src.main.java.Producto" %>
 <%@ page import="src.main.java.ManejoDAO" %>
 <html>
-<head>
+</head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
 <%
@@ -19,15 +19,15 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 
-	<div class="container well/">
+<div class="container well/">
 		<h1>Modificar Producto</h1>
-	</div>
-	</head>
+</div>
+</head>
 
-<body>
+</body>
 
 
-
+<div class="Container">
 		<%
 			Producto producto=null;
 			ManejoDAO dao=new ManejoDAO();
@@ -37,14 +37,15 @@
 			}
 			if(producto==null){
 		%>
-		<div class="Container">
-		<form action="ModificarProducto.jsp" method="get" class="form-control"
-			style="width: 300px; height: 150px">
+
+	<form action="ModificarProducto.jsp" method="get" class="form-control" style="width: 300px; height: 100px">
 
 			<div class="form-group">
+				<div class="form-group">
 				<label for="codigo">Ingrese Codigo de Producto</label>
 				<input type="text"class="form-control" id="codigo" name="codigo">
 				<button type="submit" class="btn btn-primary">Buscar Producto</button>
+				</div>
 
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
@@ -62,12 +63,7 @@
 
 				<button type="submit" class="btn btn-primary">Modificar</button>
 
-			</div>
-
-		</form>
-
-
-
+			</form>
 
 
 		<%
@@ -83,7 +79,7 @@
 				<label for="nombre">Nombre</label>
 				<input type="text" class="form-control" id="nombre" name="nombre" value="<%=producto.getNombreProducto()%>">
 
-				<label for="descripcion">Apellido</label>
+				<label for="descripcion">Descripcion</label>
 				<input type="text"class="form-control" id="descripcion" name="descripcion" value="<%=producto.getDescripcion()%>">
 
 				<label for="cantidad">Cantidad</label>
@@ -115,24 +111,20 @@
 						Integer.valueOf(cantidad),Double.valueOf(precio));
 				dao.getDBmodificarproducto(product);
 
-
 			}catch (Exception e){
 
 				e.printStackTrace();
 			}
 
-
-
-
 	}
 
 %>
-<div class="container well">
+
 <form action="Menu.jsp">
 	<button type="submit" class="btn btn-secondary">Regresar al Menu </button>
 </form>
-</div>
-</div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
