@@ -54,11 +54,11 @@ id: atributo// <>br:un espacio hacia abajo */
 			<label for="apellido">Apellido</label>
 			<input type="text"class="form-control" id="apellido" name="apellido">
 
-			<label for="Dire">Direccion</label>
+			<label for="direccion">Direccion</label>
 			<input type="text"class="form-control" id="direccion" name="direccion">
 
-			<label for="Dp">Dpi</label>
-			<input type="text"class="form-control" id="Dp" name="Dpi">
+			<label for="dpi">Dpi</label>
+			<input type="text"class="form-control" id="dpi" name="dpi">
 		</div>
 
 
@@ -83,13 +83,13 @@ id: atributo// <>br:un espacio hacia abajo */
 			<label for="nombre">Nombre</label>
 			<input type="text" class="form-control" id="nombre" name="nombre" value="<%=individual.getNombreCliente()%>">
 
-			<label for="Apelli">Apellido</label>
-			<input type="text"class="form-control" id="Apelli" name="Apellido" value="<%=individual.getApellidoCliente()%>">
+			<label for="apellido">Apellido</label>
+			<input type="text"class="form-control" id="apellido" name="apellido" value="<%=individual.getApellidoCliente()%>">
 
-			<label for="Dire">Direccion</label>
-			<input type="text"class="form-control" id="Dire" name="Direccion" value="<%=individual.getDireccion()%>">
+			<label for="direccion">direccion</label>
+			<input type="text"class="form-control" id="direccion" name="direccion" value="<%=individual.getDireccion()%>">
 
-			<label for="Dp">Dpi</label>
+			<label for="dpi">dpi</label>
 			<input type="text"class="form-control" id="dpi" name="dpi" value="<%=individual.getDpi()%>" >
 
 		</div>
@@ -107,7 +107,7 @@ id: atributo// <>br:un espacio hacia abajo */
 				String dpi=request.getParameter("dpi");
 
 			Cliente_Individual client=new Cliente_Individual(Integer.parseInt(codigo),nombre,apellido,direccion,dpi);
-		dao.getDBmodificarcliente(client);
+			dao.getDBmodificarcliente(client);
 
 	}
 

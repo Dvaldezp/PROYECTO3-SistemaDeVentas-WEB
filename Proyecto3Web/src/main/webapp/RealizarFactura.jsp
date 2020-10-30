@@ -75,7 +75,7 @@
 
 									Clienteuniversal.setCliente(dao.getDBbuscarclienteIndi(fac.getIdcliente()));
 									Facturauniversal.setFactura(dao.getDBbuscarfactura(fac.getNumerodefactura()));
-								Acceso.setAccess(true);
+									Acceso.setAccess(true);
 								}
 
 								if(1==1){

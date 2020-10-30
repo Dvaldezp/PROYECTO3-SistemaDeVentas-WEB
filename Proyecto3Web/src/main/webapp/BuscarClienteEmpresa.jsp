@@ -33,7 +33,7 @@
 	if(empresa==null){
 %>
 
-<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 1000px; height: 500px">
 
 	<div class="form-group">
 		<label for="codigo">Ingrese el codigo del cliente</label>
@@ -55,7 +55,7 @@
 		</thead>
 
 		<tr>
-			<th scope="row">nada<</th>
+			<th scope="row">nada</th>
 			<td>nada</td>
 			<td>nada</td>
 			<td>nada</td>
@@ -64,7 +64,7 @@
 		</table>
 	</div>
 
-	<button type="submit" class="btn btn-primary">Modificar</button>
+
 
 	</div>
 
@@ -75,7 +75,7 @@
 <%
 }else{
 %>
-<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+<form action="BuscarClienteEmpresa.jsp"method="get" class="form-control" style="width: 1000px; height: 500px">
 	<div class="form-group">
 		<label for="codigo">Ingrese el codigo del cliente</label>
 		<input type="text"class="form-control" id="codigo" name="codigo" value="<%=empresa.getIdCliente()%>">
@@ -103,7 +103,6 @@
 			</table>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Modificar</button>
 
 	</div>
 

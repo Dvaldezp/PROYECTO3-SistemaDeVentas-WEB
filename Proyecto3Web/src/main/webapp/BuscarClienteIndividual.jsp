@@ -27,7 +27,7 @@
 	if(individual==null){
 %>
 
-<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 1000px; height: 500px">
 
 	<div class="form-group">
 		<label for="codigo">Ingrese el codigo del cliente</label>
@@ -49,7 +49,7 @@
 		</thead>
 
 		<tr>
-			<th scope="row">NO HAY DATOS<</th>
+			<th scope="row">NO HAY DATOS</th>
 			<td>NO HAY DATOS</td>
 			<td>NO HAY DATOS</td>
 			<td>NO HAY DATOS</td>
@@ -69,7 +69,7 @@
 <%
 }else{
 %>
-<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 500px; height: 500px">
+<form action="BuscarClienteIndividual.jsp"method="get" class="form-control" style="width: 1000px; height: 500px">
 	<div class="form-group">
 		<label for="codigo">Ingrese el codigo del cliente</label>
 		<input type="text"class="form-control" id="codigo" name="codigo" value="<%=individual.getIdCliente()%>">
@@ -88,7 +88,7 @@
 		</thead>
 
 		<tr>
-		<th scope="row"><%=individual.getIdCliente()%><</th>
+		<th scope="row"><%=individual.getIdCliente()%></th>
 		<td><%=individual.getNombreCliente()%></td>
 		<td> <%=individual.getApellidoCliente()%></td>
 		<td><%=individual.getDireccion()%></td>
@@ -97,9 +97,7 @@
 			</table>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Modificar</button>
-
-	</div>
+		</div>
 
 </form>
 <%
