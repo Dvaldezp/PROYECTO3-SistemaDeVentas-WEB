@@ -81,8 +81,9 @@
 						</div>
 					
 					<div class="container well">
-
-						<button type="submit" class="btn btn-primary">Salir</button>
+						<form action="Usuario.jsp">
+							<button type="submit" class="btn btn-primary">Salir</button>
+						</form>
 					</div>
 
 					<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

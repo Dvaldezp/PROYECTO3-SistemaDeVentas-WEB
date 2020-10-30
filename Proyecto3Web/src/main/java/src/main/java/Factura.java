@@ -4,6 +4,23 @@ public class Factura {
 
     private int numerodefactura;
     private int idcliente;
+    private double totalprecio;
+
+    public double getTotalprecio() {
+        return totalprecio;
+    }
+
+    public void setTotalprecio(int totalprecio) {
+        this.totalprecio = totalprecio;
+    }
+
+
+
+    public Factura(int numerodefactura, int idcliente,double totalprecio) {
+        this.numerodefactura = numerodefactura;
+        this.idcliente = idcliente;
+        this.totalprecio = totalprecio;
+    }
 
     public int getNumerodefactura() {
         return numerodefactura;
