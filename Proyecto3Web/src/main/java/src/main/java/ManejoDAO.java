@@ -44,7 +44,7 @@ public class ManejoDAO {
             }
 
             int mayor=0;
-            if(fac.size()>1){
+            if(fac.size()!=1){
             for (int i=0;i<fac.size();i++){
 
                 for (int j=1;j<fac.size();j++){
@@ -52,6 +52,9 @@ public class ManejoDAO {
                      if (fac.get(i).getNumerodefactura()>fac.get(j).getNumerodefactura()){
                         mayor=fac.get(i).getNumerodefactura();
                     }
+                     if(fac.size()==2){
+                         mayor=fac.get(j).getNumerodefactura();
+                     }
                 }
             }}else {
                 mayor=1;
@@ -357,7 +360,11 @@ public class ManejoDAO {
                 if (rs.getInt("codigoclienteindividual") == c.getIdCliente()) {
                     String nombre = c.getNombreCliente();
                     Integer codigo = c.getIdCliente();
-                    String sql = "SELECT * FROM clienteindividual;" + "update clienteindividual set nombre=" + "'" + nombre + "'" + "where codigoclienteindividual=" + codigo + ";";
+                    String sql = "SELECT * FROM clienteindividual;" + "update clienteindividual set nombre=" + "'" + nombre + "'"+ "where codigoclienteindividual=" + codigo + ";"
+                            + "update clienteindividual set apellido=" + "'" + c.getApellidoCliente() + "'"+ "where codigoclienteindividual=" + codigo + ";"
+                            + "update clienteindividual set direccion =" + "'" + c.getDireccion() + "'"+ "where codigoclienteindividual=" + codigo + ";"
+                            + "update clienteindividual set dpi=" + "'" + c.getDpi() + "'"+ "where codigoclienteindividual=" + codigo + ";";
+
                     rs = statement.executeQuery(sql);
 
                     System.out.println(sql);
@@ -410,7 +417,13 @@ public class ManejoDAO {
                 if (rs.getInt("codigoclienteempresa") == ce.getIdCliente()) {
                     String nombre = ce.getNombreCliente();
                     Integer codigo = ce.getIdCliente();
-                    String sql = "SELECT * FROM clienteempresa;" + "update clienteempresa set nombre=" + "'" + nombre + "'" + "where codigoclienteempresa=" + codigo + ";";
+
+                    String sql = "SELECT * FROM clienteempresa;" + "update clienteempresa set nombre=" + "'" + nombre + "'"+ "where codigoclienteempresa=" + codigo + ";"
+                            + "update clienteempresa set contacto=" + "'" + ce.getContacto() + "'"+ "where codigoclienteempresa=" + codigo + ";"
+                            + "update clienteempresa set direccion =" + "'" + ce.getDireccion() + "'"+ "where codigoclienteempresa=" + codigo + ";"
+                            + "update clienteempresa set descuento=" + "'" + ce.getDescuentoEmpresa() + "'"+ "where codigoclienteempresa=" + codigo + ";";
+
+
                     rs = statement.executeQuery(sql);
 
                     System.out.println(sql);

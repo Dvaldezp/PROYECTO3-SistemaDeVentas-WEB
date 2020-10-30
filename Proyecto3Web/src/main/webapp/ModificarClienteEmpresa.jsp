@@ -117,6 +117,7 @@ id: atributo// <>br:un espacio hacia abajo */
         String contacto=request.getParameter("contacto");
         String descuento=request.getParameter("descuento");
 
+
         Cliente_Empresa client=new Cliente_Empresa(Integer.parseInt(codigo),nombre,apellido,direccion,
                 contacto,15);
         dao.getDBmodificarclienteempre(client);

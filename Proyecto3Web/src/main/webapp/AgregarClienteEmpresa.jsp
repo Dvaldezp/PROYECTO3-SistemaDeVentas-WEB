@@ -120,7 +120,7 @@
 			<tbody>
 			<tr>
 
-				<th scope="row"><%=empresa.getIdCliente()%><</th>
+				<th scope="row"><%=empresa.getIdCliente()%></th>
 				<td><%=empresa.getNombreCliente()%></td>
 				<td> <%=empresa.getDireccion()%></td>
 				<td><%=empresa.getContacto()%></td>
